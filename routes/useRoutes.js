@@ -1,18 +1,18 @@
 import express from 'express';
+const router = express.Router();
 import Usercontroller from '../controllers/Usercontroller.js';
 import checkUserAuth from '../middlewares/auth-middleware.js';
 import imageupload from '../controllers/imageupload.js'
 import {payment_generated,payment,verify} from '../payment/Razorpay.js'
-const router =express.Router();
 
 //procted router 
 router.use('/changepassword',checkUserAuth)
 router.use('/loggedUser',checkUserAuth)
 router.use('/edit',checkUserAuth)
 
-router.get('/',(req, res) => {
-    res.json('hello')
-})
+router.get('/', (req, res) => {
+    res.send("Hello World");
+});
 router.post('/register',Usercontroller.UserRegistration)
 router.post('/login',Usercontroller.UserLogin)
 router.post('/sendresetPassword',Usercontroller.resetPassword)
